@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+
+<style>
+  body{
+    background: rgb(47, 144, 185);
+    display: flex;
+    justify-content: center;
+    
+   
+  }
+  .log{
+    height: 400px;
+    width: 600px;
+    background-image: url(img/xingkong.jpeg);
+    border-radius: 25px; 
+    position: relative;
+    top: 100px;
+    display:flex;
+  }
+  .input-box{
+    width: 400px;
+    height: 400px;
+
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 25px; 
+  }
+
+ .box{
+  width:250px;
+  height:30px;
+  padding:5px;
+  margin: 20px;;
+  display:flex;
+
+
+  }
+  .e{
+    height: 400px;
+    width: 200px;
+  }
+  .sub{
+    height:30px;
+    width:80px;
+    background: rgb(47, 144, 185);
+    border-radius:5px;
+    
+  }
+  </style>
+  </head>
+  <body>
+  <div class="log">
+    <div class="e">
+    <model-viewer class="e" src="img/export.glb" alt="A 3D model of an astronaut" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls ></model-viewer>
+      </div>
+    <div class="input-box">
+  <input type="" class="box" placeholder="用户名" required id="username">
+   <input type= "password" class="box" placeholder="密码" required id="passwd">
+   <span>
+    <button type="submit"class="sub" onclick="login()">登基</button>
+   <button type="submit"class="sub" onclick="register()">注册</button>
+  </span>
+		<!--<input type="button" id="btnClear" value="清除" onclick="doClear()" />-->
+
+  </div>
+  <div id="password"></div>
+  </div>
+
+  <script type="text/javascript">
+    let accountAll = [{ // 存储账户json数据的数组
+        username: 123,
+        passwd: 'qwe'
+      },
+      {
+        username: 456,
+        passwd: 'asd'
+      },
+      {
+        username: 789,
+        passwd: 'zxc'
+      }
+    ]
+    function login() { //登陆判断
+      let username = document.getElementById('username').value;
+      let passwd = document.getElementById('passwd').value;
+      let account = accountAll.filter(function(e) {
+        return e.username == username
+      })[0]; // 筛选账号返回数组，不存在则返回空数组
+      if (!account) {
+        alert('账户不存在');
+      } else {
+        if (account.username == username && account.passwd == passwd) {
+          window.location.href='demo6.html';
+
+        } else {
+          alert('登陆失败');
+        }
+      }
+    }
+    function doClear() { //获取页面所有的input框，是text和password框，内容=空串
+      let inputs = document.getElementsByTagName("input");
+      for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].type == 'text' || inputs[i].type == 'password') {
+          inputs[i].value = '';
+        }
+      }
+    }
+    //给清除按钮增加onclick事件
+    let btnClear = document.getElementById('btnClear');
+    btnClear.addEventListener('click', function() {
+      doClear();
+    });
+    function register(){
+      window.location.href='register.html';
+    }
+  </script>
+
+  </body>
+  </html>
